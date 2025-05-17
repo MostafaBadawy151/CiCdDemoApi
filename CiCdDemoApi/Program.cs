@@ -15,7 +15,10 @@ namespace CiCdDemoApi
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
-
+            var port = Environment.GetEnvironmentVariable("PORT") ??
+            Environment.GetEnvironmentVariable("ASPNETCORE_HTTP_PORTS") ??
+            "8080";
+            app.Urls.Add($"http://*:{port}");
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -29,6 +32,8 @@ namespace CiCdDemoApi
 
 
             app.MapControllers();
+            app.MapGet("/", () => "API is live!");
+
 
             app.Run();
         }
