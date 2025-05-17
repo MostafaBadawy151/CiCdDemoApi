@@ -10,7 +10,16 @@ namespace CiCdDemoApi.Controllers
         [HttpGet]
         public IActionResult GetProducts()
         {
-            return Ok(new {Id = 1, Name= "Samsung", Price = 23232});
+            var products = new[]
+            {
+                new { Id = 1, Name = "Samsung", Price = 23232 },
+                new { Id = 2, Name = "Apple", Price = 45000 },
+                new { Id = 3, Name = "Xiaomi", Price = 15000 }
+            };
+
+            return Ok(products);
         }
+
+      
     }
 }
